@@ -1,0 +1,114 @@
+
+<ion-content>
+      <ion-header>
+          <ion-toolbar>
+            <ion-title color="light" class="ion-text-center" >
+              <h3> Infosys BPM S&P-Digital day feedback form</h3>
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+      <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)"> -->
+          <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
+      <ion-card padding>
+          <ion-card-title  class="ion-text-center" > How was your experience of the Digital FSI Day?</ion-card-title>
+        </ion-card>
+        <ion-card>
+          <ion-grid>
+            <ion-row justify-content-center row="22">
+              
+  
+                    <ion-icon  (click)="onclickhappy()" size="large" *ngIf="ishappy" class="icon-happy-init" name="happy"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <ion-icon   (click)="onclickokay()"size="large" *ngIf="isokay" class="icon-good-init" name="happy"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <ion-icon  (click)="onclicksad()" size="large" *ngIf="issad" color="danger" name="sad"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </ion-row>
+              <br><br>
+              <p class="ion-text-center icon-happy-init" color=""*ngIf="paraishappy" >Excellent</p>
+              <p class="ion-text-center icon-good-init" color=""*ngIf="paraisokay" >Good !</p>
+              <p class="ion-text-center icon-sad-init" color="" *ngIf="paraissad" >Sad !</p> <br>
+               
+              <p *ngIf="!paraishappy && !paraisokay && !paraissad" class="ion-text-center icon-sad-init" > Please choose your experience</p> <br>
+             
+              <p class="ion-text-center"><ion-icon (click)="refreshmood()" size="small"name="refresh"></ion-icon></p>
+              
+              </ion-grid>
+  
+          </ion-card>
+
+             
+                     
+                  <ion-card>
+                      <ion-card-title class="ion-text-center">
+                          From the below list, Please select any three solutions that are relevant to your service line?
+                   </ion-card-title>
+                      <ion-card-content>
+                    
+                    <label class="container" *ngFor="let test of testData" > 
+                      <input #checkboxes id="test.id"  type="checkbox" name="checkbox" [(ngModel)]="test.checkbox"  data-md-icheck (change)="toggleVisibility($event,test.id,test.name)"/>
+                          {{test.name
+                          }}
+                      
+                        <span class="checkmark"></span> <br>
+                      </label>
+                      <p *ngIf="checkedtotalcount>3" class="ion-text-center icon-sad-init" >Maximum three selection is allowed</p> <br>
+                      <p *ngIf="checkedtotalcount===0" class="ion-text-center icon-sad-init" >Please select any three solutions from the list  </p> <br>
+                                </ion-card-content>  
+                                
+                  </ion-card>
+                  <!-- <ion-card>
+             
+                      <ion-card-content>
+                        
+                        
+            
+                          <div class="form-group">
+                          
+                              <ion-textarea  class="form-control" name="idea" [(ngModel)]="model.idea" #idea="ngModel" [ngClass]="{ 'is-invalid': f.submitted && idea.invalid }" required placeholder="Any solution ideas that you would like us to work on?"></ion-textarea>
+                              <div *ngIf="f.submitted && idea.invalid" class="invalid-feedback">
+                                 
+                                  <p *ngIf="idea.errors.required" class="ion-text-center icon-sad-init" >idea is required</p> <br>
+                              </div>
+                                </div>
+                              </ion-card-content>
+                        </ion-card> -->
+                        <ion-card>
+             
+                          <ion-card-content>
+                            
+                
+                              <div class="form-group">
+                              
+                                  <ion-textarea  class="form-control" name="idea" [(ngModel)]="model.idea" #idea="ngModel" [ngClass]="{ 'is-invalid': f.submitted && idea.invalid }" required placeholder="Any solution ideas that you would like us to work on?"></ion-textarea>
+                                  <div *ngIf="f.submitted && idea.invalid" class="invalid-feedback">
+                                      <!-- <div *ngIf="employeeid.errors.required">Employee ID is required</div> -->
+                                      <p *ngIf="idea.errors.required" class="ion-text-center icon-sad-init" >idea is required</p> <br>
+                                  </div>
+                                    </div>
+                                  </ion-card-content>
+                            </ion-card>
+           
+              <ion-card>
+                <ion-card-content>
+               
+                <div class="form-group">
+              
+                <ion-input  class="form-control" name="employeeid" [(ngModel)]="model.employeeid" #employeeid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && employeeid.invalid }" required placeholder="Enter Employee ID"></ion-input>
+                <div *ngIf="f.submitted && employeeid.invalid" class="invalid-feedback">
+                    <!-- <div *ngIf="employeeid.errors.required">Employee ID is required</div> -->
+                    <p *ngIf="employeeid.errors.required" class="ion-text-center icon-sad-init" >Employee ID is required</p> <br>
+                </div>
+                  </div>
+                <ion-button  expand="block"  type="submit" size="large" slot="center"color="primary">Submit</ion-button>
+            </ion-card-content>  
+            </ion-card>
+            </form>
+              
+    <!-- <div class="ion-padding">
+      The world is your oyster.
+      <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    </div> -->
+  </ion-content>
+</ion-content>
